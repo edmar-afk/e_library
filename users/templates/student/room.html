@@ -1,0 +1,50 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>EdFor</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}" />
+		{% tailwind_css %}
+	</head>
+	<body class="bg-gray-200">
+		{% include 'includes/student_sidebar.html' %}
+		<div class="p-4 sm:ml-64">
+			<div class="mt-16">
+				<div
+					class="relative">
+					<div class="text-gray-800 top-8 left-4 font-bold text-xl sm:text-3xl md:text-5xl">
+						<p>{{room.class_name}} - {{room.section}}</p>
+						<p class="text-lg ml-4 mt-4 text-gray-800">Instructor: {{room.instructor.first_name}}</p>
+					</div>
+				</div>
+
+				<!-- Modal toggle -->
+				<div class="flex flex-row items-center">
+					{% for message in messages%} {% if message.level_tag == 'success' %}
+					<p class="text-center text-green-600 font-bold mt-4 text-md">{{message}}</p>
+					{% else %}
+					<p class="text-center text-red-600 font-bold mt-4 text-md">{{message}}</p>
+					{%endif%} {% endfor %}
+				</div>
+
+				<div class="mt-14 px-4">
+					
+					
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>

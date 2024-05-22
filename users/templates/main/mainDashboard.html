@@ -1,0 +1,209 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Admin</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+
+		{% tailwind_css %}
+	</head>
+	<body>
+		<button
+			data-drawer-target="cta-button-sidebar"
+			data-drawer-toggle="cta-button-sidebar"
+			aria-controls="cta-button-sidebar"
+			type="button"
+			class="fixed bg-green-400 inline-flex items-center p-2 mt-2 ms-3 text-sm text-pink-500 rounded-lg sm:hidden hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-pink-200">
+			<span class="sr-only">Open sidebar</span>
+			<svg
+				class="w-6 h-6"
+				aria-hidden="true"
+				fill="currentColor"
+				viewBox="0 0 20 20"
+				xmlns="http://www.w3.org/2000/svg">
+				<path
+					clip-rule="evenodd"
+					fill-rule="evenodd"
+					d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+			</svg>
+		</button>
+
+		<aside
+			id="cta-button-sidebar"
+			class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+			aria-label="Sidebar">
+			<div class="h-full px-3 py-4 overflow-y-auto bg-pink-200">
+				<h1 class="text-center font-bold mt-4">Admin</h1>
+
+				<ul class="space-y-2 font-medium mt-24">
+					<li class="">
+						<a
+							href="{% url 'mainDashboard' %}"
+							class="flex items-center p-2 text-pink-800 rounded-lg">
+							<i class="fa-solid fa-users text-lg text-pink-800 transition duration-75"></i>
+							<span class="ms-3">User Lists</span>
+						</a>
+					</li>
+
+					<li>
+						<a
+							href="{% url 'homepage' %}"
+							class="flex items-center p-2 text-pink-900 rounded-lg hover:bg-pink-100 group">
+							<i
+								class="fa-solid fa-right-from-bracket flex-shrink-0 text-pink-500 transition duration-75 group-hover:text-pink-900"></i>
+							<span class="ms-3 whitespace-nowrap">Logout</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+
+		<div class="p-2 sm:p-4 sm:ml-64 mt-14">
+			<!-- Modal toggle -->
+
+			<div class="p-4">
+				{% for message in messages%} {% if message.level_tag == 'success' %}
+				<p class="text-center text-green-400 font-bold mt-14 text-md">{{message}}</p>
+				{% else %}
+				<p class="text-center text-red-400 font-bold mt-14 text-md">{{message}}</p>
+				{%endif%} {% endfor %}
+
+				<!-- component -->
+
+				<div class="flex flex-col justify-between flex-wrap">
+					<div class="w-full p-4 bg-white border border-pink-200 rounded-lg shadow sm:p-8">
+						<div class="flex items-center justify-between mb-4">
+							<h5 class="text-xl font-bold leading-none text-pink-900">Students List</h5>
+						</div>
+						<div class="flow-root">
+							<ul
+								role="list"
+								class="divide-y divide-pink-200">
+								{% for students in student %}
+								<li class="py-3 sm:py-4">
+									<div class="flex items-center justify-between">
+										<div class="flex">
+											<i
+												class="fa fa-user-circle text-pink-400 text-4xl"
+												aria-hidden="true"></i>
+											<div class="min-w-0 ms-4">
+												<p class="text-sm font-medium text-pink-900 truncate">{{students.first_name}}</p>
+												<p class="text-sm text-pink-500 truncate">{{students.email}}</p>
+											</div>
+										</div>
+
+										<div class="items-center text-base font-semibold text-pink-900">
+											<div class="flex gap-2 px-2">
+												<a
+													href="{% url 'deleteuser' students.id %}"
+													class="text-center text-red-400 antialiased font-bold">
+													<i
+														class="fa fa-trash"
+														aria-hidden="true"></i>
+													Remove
+												</a>
+												{% if students.is_staff%}
+												<a
+													href="{% url 'disapprove_user' students.id %}"
+													class="font-semibold text-blue-700">
+													<i
+														class="fa fa-check-circle"
+														aria-hidden="true"></i>
+													Accepted
+												</a>
+
+												{% else %}
+												<a
+													href="{% url 'approve_user' students.id %}"
+													class="font-semibold text-red-700">
+													<i
+														class="fa fa-times-circle"
+														aria-hidden="true"></i>
+													Not Accepted
+												</a>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								</li>
+
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="w-full p-4 bg-white border border-pink-200 rounded-lg shadow sm:p-8 mt-24">
+					<div class="flex items-center justify-between mb-4">
+						<h5 class="text-xl font-bold leading-none text-pink-900">Teacher List</h5>
+					</div>
+					<div class="flow-root">
+						<ul
+							role="list"
+							class="divide-y divide-pink-200">
+							{% for instructor in instructor %}
+							<li class="py-3 sm:py-4">
+								<div class="flex items-center justify-between">
+									<div class="flex">
+										<i
+											class="fa fa-user-circle text-pink-400 text-4xl"
+											aria-hidden="true"></i>
+										<div class="min-w-0 ms-4">
+											<p class="text-sm font-medium text-pink-900 truncate">{{instructor.first_name}}</p>
+											<p class="text-sm text-pink-500 truncate">{{instructor.email}}</p>
+										</div>
+									</div>
+
+									<div class="items-center text-base font-semibold text-pink-900">
+										<div class="flex gap-2 px-2">
+											<a
+												href="{% url 'deleteuser' instructor.id %}"
+												class="text-center text-red-400 antialiased font-bold">
+												<i
+													class="fa fa-trash"
+													aria-hidden="true"></i>
+												Remove
+											</a>
+											{% if instructor.is_staff%}
+											<a
+												href="{% url 'disapprove_user' instructor.id %}"
+												class="font-semibold text-blue-700">
+												<i
+													class="fa fa-check-circle"
+													aria-hidden="true"></i>
+												Accepted
+											</a>
+
+											{% else %}
+											<a
+												href="{% url 'approve_user' instructor.id %}"
+												class="font-semibold text-red-700">
+												<i
+													class="fa fa-times-circle"
+													aria-hidden="true"></i>
+												Not Accepted
+											</a>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</li>
+
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>

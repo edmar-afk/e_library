@@ -1,0 +1,72 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		{% tailwind_css %}
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}" />
+	</head>
+	<body class="bg">
+		{% include 'includes/nav.html' %}
+
+		<!-- source https://github.com/themesberg/landwind -->
+
+		<section class="bg-white/60 h-full">
+			<div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-10 lg:pt-28">
+				<div class="mr-auto place-self-center lg:col-span-5 mt-32">
+					<h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl text-pink-600">
+						LNHS Online
+
+						<br />
+						Forum
+					</h1>
+
+					<p class="max-w-2xl mb-6 font-light text-gray-900 lg:mb-8 md:text-lg lg:text-xl">
+						<b>Disclaimer:</b> The LNHS online forum serves as a platform for open discussion and exchange of ideas related to
+						the LNHS. The views expressed by participants are their own and do not necessarily reflect the views of LNHS
+						or its affiliated entities.While every effort is made to ensure the accuracy and reliability of information
+						shared, users are encouraged to independently verify any information obtained from the forum.
+					</p>
+
+					<div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
+						<a
+							href="{% url 'user_login' %}"
+							class="inline-flex items-center justify-center w-full px-5 py-3 text-sm font-medium text-center text-pink-900 border border-pink-800 rounded-lg sm:w-auto hover:bg-pink-600 focus:ring-4 hover:text-pink-100 focus:ring-pink-100 duration-300">
+							<i class="fas fa-door-open mr-1"></i>
+							Login
+						</a>
+
+						<a
+							href="{% url 'user_register' %}"
+							class="inline-flex items-center justify-center w-full px-5 py-3 mb-2 mr-2 text-sm font-medium text-pink-100 bg-pink-500 border border-gray-200 rounded-lg sm:w-auto focus:outline-none hover:bg-pink-100 hover:text-pink-700 focus:z-10 focus:ring-4 focus:ring-pink-200 duration-300">
+							<i class="fa fa-user-plus mr-1" aria-hidden="true"></i>
+							Register
+						</a>
+					</div>
+				</div>
+
+				<div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+					<img
+						src="{% static 'img/bg1.png' %}"
+						alt="hero image" />
+				</div>
+			</div>
+		</section>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>

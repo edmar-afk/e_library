@@ -1,0 +1,62 @@
+{% load static tailwind_tags %}<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		{% tailwind_css %}
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+			rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link
+			rel="stylesheet"
+			href="{% static 'css/style.css' %}" />
+	</head>
+	<body class="bg">
+		{% include 'includes/nav.html' %}
+
+		<section class="bg-pink-950/95 h-full">
+			<div class="gap-16 items-center py-32 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-40 lg:px-6">
+				<div class="mt-8">
+					<img
+						class="w-full rounded-lg"
+						src="{% static 'img/me.png' %}"
+						alt="office content 1" />
+				</div>
+				<div class="font-light text-white sm:text-lg">
+					<h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-200">About</h2>
+					<br />
+
+					<p class="font-bold">Reference:</p>
+					<a
+					class="text-md sm:text-2xl font-bold underline"
+						target="_blank"
+						href="http://scholar.google.com/scholar?hl=en&as_sdt=0,5&qsp=3&q=online+information+public+libraries&qst=br#d=gs_qabs&t=170987695693&u%23p%3Dui1UzRFZxU4J">
+						http://scholar.google.com/scholar?
+					</a>
+					<br />
+					<br />
+					<br />
+					<p>
+						<b class="font-bold">The Page</b>
+						<br />
+						The LNHS online forum is a webpage where users can discuss reports and findings related to the LNHS
+						e-library. It’s a space for sharing insights, exchanging ideas, and collaborating on projects.
+					</p>
+					
+				</div>
+				
+			</div>
+		</section>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+	</body>
+</html>
